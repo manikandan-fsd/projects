@@ -1,0 +1,31 @@
+
+body {
+    font-family: Arial;
+    margin: 20px;
+    background-color: #3d2ec28a;
+}
+
+h1 {
+    color: darkblue;
+    text-align: center;
+    background-color: rgba(221, 221, 221, 0.575);
+    width: 100%;
+    padding: 10px;
+}
+h2{
+    text-align: center;
+}
+
+nav  {
+    margin-right: 15px;
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    gap: 190%;
+}
+
+ul {
+    background: white;
+    padding: 20px;
+    width: 300px;
+}
