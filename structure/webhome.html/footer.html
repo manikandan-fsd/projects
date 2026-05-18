@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Training Trains</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f5f5f5;
+        }
+
+        /* Navigation */
+        nav{
+            background:#0d1b2a;
+            padding:15px 50px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .logo{
+            color:#fff;
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .menu{
+            list-style:none;
+            display:flex;
+            gap:25px;
+        }
+
+        .menu li a{
+            text-decoration:none;
+            color:#fff;
+            font-size:16px;
+            transition:0.3s;
+        }
+
+        .menu li a:hover{
+            color:#00b4d8;
+        }
+
+        /* Hero Section */
+        .hero{
+            height:80vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            text-align:center;
+            background:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+            url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1920') center/cover;
+            color:#fff;
+            padding:20px;
+        }
+
+        .hero h1{
+            font-size:55px;
+            margin-bottom:20px;
+        }
+
+        .hero p{
+            font-size:20px;
+            max-width:700px;
+            line-height:1.6;
+        }
+
+        .btn{
+            margin-top:25px;
+            padding:14px 30px;
+            background:#00b4d8;
+            color:#fff;
+            text-decoration:none;
+            border-radius:5px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#0077b6;
+        }
+
+        /* Footer */
+        footer{
+            background:#0d1b2a;
+            color:#fff;
+            text-align:center;
+            padding:30px 20px;
+        }
+
+        .social-links{
+            margin-top:15px;
+        }
+
+        .social-links a{
+            color:#fff;
+            text-decoration:none;
+            margin:0 15px;
+            font-size:18px;
+            transition:0.3s;
+        }
+
+        .social-links a:hover{
+            color:#00b4d8;
+        }
+
+        @media(max-width:768px){
+
+            nav{
+                flex-direction:column;
+                gap:15px;
+            }
+
+            .menu{
+                flex-direction:column;
+                text-align:center;
+            }
+
+            .hero h1{
+                font-size:38px;
+            }
+
+            .hero p{
+                font-size:17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Menu -->
+    <nav>
+     <div class="logo">Training Trains</div>
+
+        <ul class="menu">
+            <li><a href="hhead.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="internship.html">Courses</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to Training Trains</h1>
+
+        <p>
+            Empower your future with real-time training, internships,
+            software development, AI, cybersecurity, cloud computing,
+            and digital marketing programs.
+        </p>
+
+        <a href="#" class="btn">Explore Programs</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Training Trains Software Technologies & Institute</h2>
+
+        <p>
+            Web Development | AI | Cyber Security | Cloud | Internship Programs  
+        </p>
+
+        <div class="social-links">
+            <a href="https://www.facebook.com/traininngtrains/" target="_blank">
+                Facebook
+            </a>
+
+            <a href="https://www.instagram.com/training_trains/" target="_blank">
+                Instagram
+            </a>
+
+            <a href="https://www.youtube.com/@TrainingTrainsInternship/videos" target="_blank">
+                Youtube
+            </a>
+             
+        </div>
+
+    <section class="contact" id="contact">
+    <h3>Contact Us</h3>
+    <p>🌐 Website: www.trainingtrains.com</p>
+    <p>📞 Mobile: 9025010144</p>
+    <p>📧 Email: info@trainingtrains.com</p>
+    </section>
+
+
+        <p style="margin-top:20px;">
+            © 2026 Training Trains. All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
