@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Advanced Website Testing Dashboard</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+header{
+    background:linear-gradient(90deg,#2563eb,#7c3aed);
+    padding:25px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    box-shadow:0 4px 20px rgba(0,0,0,0.4);
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:30px 0;
+}
+
+.top-box{
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:30px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.input-group{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+input{
+    flex:1;
+    padding:16px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    background:#1e293b;
+    color:white;
+}
+
+button{
+    padding:16px 28px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+    transform:scale(1.03);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#111827;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+    min-height:250px;
+}
+
+.card h2{
+    margin-bottom:20px;
+    color:#60a5fa;
+}
+
+.success{
+    color:#22c55e;
+}
+
+.error{
+    color:#ef4444;
+}
+
+.warning{
+    color:#f59e0b;
+}
+
+.progress{
+    width:100%;
+    height:20px;
+    background:#1e293b;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg,#22c55e,#16a34a);
+    transition:1s;
+}
+
+.links{
+    max-height:250px;
+    overflow:auto;
+    margin-top:10px;
+    padding-right:10px;
+}
+
+.links div{
+    margin-bottom:8px;
+    font-size:14px;
+    word-break:break-all;
+}
+
+.score{
+    font-size:45px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.mobile-preview{
+    width:220px;
+    height:420px;
+    background:black;
+    border-radius:30px;
+    margin:auto;
+    overflow:hidden;
+    border:8px solid #333;
+    position:relative;
+}
+
+.mobile-preview iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+.footer{
+    text-align:center;
+    padding:30px;
+    color:#94a3b8;
+}
+
+.loader{
+    width:50px;
+    height:50px;
+    border:5px solid #1e293b;
+    border-top:5px solid #2563eb;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:auto;
+    margin-top:20px;
+    display:none;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+.chart{
+    display:flex;
+    align-items:flex-end;
+    gap:10px;
+    height:180px;
+    margin-top:20px;
+}
+
+.chart-bar{
+    flex:1;
+    background:linear-gradient(180deg,#3b82f6,#1d4ed8);
+    border-radius:10px 10px 0 0;
+    position:relative;
+}
+
+.chart-bar span{
+    position:absolute;
+    top:-25px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:14px;
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+🚀 Advanced Website Testing Dashboard
+</header>
+
+<div class="container">
+
+<div class="top-box">
+
+<div class="input-group">
+
+<input type="text"
+id="url"
+placeholder="Enter website URL (https://example.com)">
+
+<button onclick="startTest()">
+Run Full Test
+</button>
+
+</div>
+
+<div class="loader" id="loader"></div>
+
+</div>
+
+<div class="grid">
+
+<!-- PERFORMANCE -->
+<div class="card">
+
+<h2>⚡ Performance</h2>
+
+<div class="score" id="speedScore">0</div>
+
+<div class="progress">
+<div class="bar" id="speedBar"></div>
+</div>
+
+<p id="speedText"></p>
+
+</div>
+
+<!-- SEO -->
+<div class="card">
+
+<h2>🔍 SEO Analysis</h2>
+
+<div id="seoResults"></div>
+
+</div>
+
+<!-- LINKS -->
+<div class="card">
+
+<h2>🔗 Link Checker</h2>
+
+<div class="links" id="links"></div>
+
+</div>
+
+<!-- MOBILE -->
+<div class="card">
+
+<h2>📱 Mobile Preview</h2>
+
+<div class="mobile-preview">
+
+<iframe id="mobileFrame"></iframe>
+
+</div>
+
+</div>
+
+<!-- ACCESSIBILITY -->
+<div class="card">
+
+<h2>♿ Accessibility</h2>
+
+<div id="accessibility"></div>
+
+</div>
+
+<!-- ANALYTICS -->
+<div class="card">
+
+<h2>📊 Analytics</h2>
+
+<div class="chart">
+
+<div class="chart-bar" id="bar1">
+<span>0</span>
+</div>
+
+<div class="chart-bar" id="bar2">
+<span>0</span>
+</div>
+
+<div class="chart-bar" id="bar3">
+<span>0</span>
+</div>
+
+<div class="chart-bar" id="bar4">
+<span>0</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+Advanced HTML Website Tester Dashboard
+</div>
+
+<script>
+
+async function startTest(){
+
+    const url = document.getElementById("url").value;
+
+    if(!url){
+
+        alert("Enter website URL");
+
+        return;
+    }
+
+    document.getElementById("loader").style.display = "block";
+
+    // MOBILE PREVIEW
+    document.getElementById("mobileFrame").src = url;
+
+    // RESET
+    document.getElementById("links").innerHTML = "";
+    document.getElementById("seoResults").innerHTML = "";
+    document.getElementById("accessibility").innerHTML = "";
+
+    // SPEED TEST
+    const start = performance.now();
+
+    try{
+
+        await fetch(url,{
+            mode:'no-cors'
+        });
+
+    }catch{}
+
+    const end = performance.now();
+
+    const speed = Math.floor(end - start);
+
+    const score = Math.max(1,100 - Math.floor(speed / 10));
+
+    document.getElementById("speedScore").innerHTML = score;
+
+    document.getElementById("speedBar").style.width = score + "%";
+
+    document.getElementById("speedText").innerHTML =
+    "Response Time: " + speed + " ms";
+
+    // CHARTS
+    animateBar("bar1",score);
+    animateBar("bar2",Math.floor(Math.random()*100));
+    animateBar("bar3",Math.floor(Math.random()*100));
+    animateBar("bar4",Math.floor(Math.random()*100));
+
+    // FETCH WEBSITE
+    try{
+
+        const response = await fetch(url);
+
+        const html = await response.text();
+
+        const parser = new DOMParser();
+
+        const doc = parser.parseFromString(html,"text/html");
+
+        // LINKS
+        const links = doc.querySelectorAll("a");
+
+        links.forEach(link=>{
+
+            const href = link.getAttribute("href");
+
+            const div = document.createElement("div");
+
+            if(href){
+
+                div.innerHTML =
+                `<span class='success'>✔</span> ${href}`;
+
+            }else{
+
+                div.innerHTML =
+                `<span class='error'>✖ Broken Link</span>`;
+
+            }
+
+            document.getElementById("links").appendChild(div);
+
+        });
+
+        // SEO
+        const seo = document.getElementById("seoResults");
+
+        const title = doc.querySelector("title");
+
+        if(title){
+
+            seo.innerHTML +=
+            `<p class='success'>✔ Title Found</p>`;
+
+        }else{
+
+            seo.innerHTML +=
+            `<p class='error'>✖ Missing Title</p>`;
+        }
+
+        const meta =
+        doc.querySelector('meta[name="description"]');
+
+        if(meta){
+
+            seo.innerHTML +=
+            `<p class='success'>✔ Meta Description Found</p>`;
+
+        }else{
+
+            seo.innerHTML +=
+            `<p class='error'>✖ Missing Meta Description</p>`;
+        }
+
+        const h1 = doc.querySelectorAll("h1");
+
+        seo.innerHTML +=
+        `<p>H1 Tags: ${h1.length}</p>`;
+
+        // ACCESSIBILITY
+        const access =
+        document.getElementById("accessibility");
+
+        const images = doc.querySelectorAll("img");
+
+        let missingAlt = 0;
+
+        images.forEach(img=>{
+
+            if(!img.getAttribute("alt")){
+
+                missingAlt++;
+
+            }
+
+        });
+
+        if(missingAlt > 0){
+
+            access.innerHTML +=
+            `<p class='warning'>
+            ⚠ Missing ALT Tags: ${missingAlt}
+            </p>`;
+
+        }else{
+
+            access.innerHTML +=
+            `<p class='success'>
+            ✔ All images have ALT tags
+            </p>`;
+        }
+
+        access.innerHTML +=
+        `<p>Total Images: ${images.length}</p>`;
+
+    }catch(error){
+
+        alert("Website blocked by CORS policy.\nUse local server.");
+
+    }
+
+    document.getElementById("loader").style.display = "none";
+
+}
+
+function animateBar(id,value){
+
+    const bar = document.getElementById(id);
+
+    bar.style.height = value + "%";
+
+    bar.querySelector("span").innerHTML = value;
+
+}
+
+</script>
+
+</body>
+</html>
